@@ -33,7 +33,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Plates
+          Plates.
         </a>
       </header>
     </div>
