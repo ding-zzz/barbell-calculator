@@ -3,11 +3,41 @@ import { useState } from "react";
 import './App.css';
 
 function App() {
-  const handleCalculate = (event) => {
-    event.preventDefault();
+  // const validationMessage = (value) => {
+  //   if (value<45){
+  //     setIsValid(false);
+  //     return "Please enter a weight above 45";
+  //   } else if (value>1000){
+  //     setIsValid(false);
+  //     return "The max weight value is 1000";
+  //   } else {
+  //     setIsValid(true);
+  //     return "";
+  //   }
+  // }
+  
+  const handleChange = (event) => {
+    const value = event.target.value;
+    setWeight(event.target.value);
+    //validationMessage(value);
+    if (value<45){
+      setIsValid(false);
+    } else {
+      setIsValid(true);
+    }
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();    
     setPlates(calculate(weight));
     console.log(platesObj);
-  }
+    if (isValid) {
+      console.log('Submitted weight:', weight);
+    } else {
+      console.error('Invalid weight:', weight);
+    }
+  };
+
   const platesObj = {
     plate55: 0,
     plate45: 0,
@@ -20,6 +50,8 @@ function App() {
   };
   const [weight, setWeight] = useState("");
   const [plates, setPlates] = useState("");
+  const [isValid, setIsValid] = useState(true);
+  //const [validationMessage, setValidationMethod] = useState("");
   return (
     <div className="App">
       <header className="App-header">
@@ -27,16 +59,17 @@ function App() {
         <p>
           Barbell Calculator
         </p>
-        <form onSubmit={handleCalculate}>
-          <label for="weight">Total Weight:</label>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="weight">Total Weight:</label>
           <input 
             type="text" 
             value={weight} 
             name="weight" 
-            onChange={(e) => setWeight(e.target.value)}
+            onChange={(e) => handleChange(e)}
           ></input><br></br>
           <input type="submit" value="Calculate"></input>
         </form>
+        {!isValid && <p className="validation1">"Please enter a weight above 45"</p>}
 
         <a
           className="App-link"
@@ -76,7 +109,6 @@ function App() {
         platesObj.plate2p5 += 1;
         w -= 5;
       } else break;
-  
     }
     return platesObj;
   
