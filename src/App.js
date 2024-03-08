@@ -3,28 +3,27 @@ import { useState } from "react";
 import './App.css';
 
 function App() {
-  // const validationMessage = (value) => {
-  //   if (value<45){
-  //     setIsValid(false);
-  //     return "Please enter a weight above 45";
-  //   } else if (value>1000){
-  //     setIsValid(false);
-  //     return "The max weight value is 1000";
-  //   } else {
-  //     setIsValid(true);
-  //     return "";
-  //   }
-  // }
+  
+  function validationMessage(value){
+    if (value<45){
+      setIsValid(false);
+      setErrorMessage("Please enter a weight above 45");
+    } else if (value>1000){
+      setIsValid(false);
+      setErrorMessage("The max weight value is 1000");
+    } else if (value % 5 !== 0){
+      setErrorMessage("Please enter weight ending in 5 or 0")
+    }
+    else {
+      setIsValid(true);
+      return "";
+    }
+}
   
   const handleChange = (event) => {
     const value = event.target.value;
     setWeight(event.target.value);
-    //validationMessage(value);
-    if (value<45){
-      setIsValid(false);
-    } else {
-      setIsValid(true);
-    }
+    validationMessage(value);
   };
 
   const handleSubmit = (event) => {
@@ -48,10 +47,13 @@ function App() {
     plate2p5: 0,
     plate1: 0,
   };
+
   const [weight, setWeight] = useState("");
   const [plates, setPlates] = useState("");
   const [isValid, setIsValid] = useState(true);
+  const [errorMessage, setErrorMessage] = useState("");
   //const [validationMessage, setValidationMethod] = useState("");
+
   return (
     <div className="App">
       <header className="App-header">
@@ -69,7 +71,7 @@ function App() {
           ></input><br></br>
           <input type="submit" value="Calculate"></input>
         </form>
-        {!isValid && <p className="validation1">"Please enter a weight above 45"</p>}
+        {!isValid && <p className="validation1">{errorMessage}</p>}
 
         <a
           className="App-link"
