@@ -1,6 +1,7 @@
 import barbell from './img/barbell.jpg';
 import { useState } from "react";
 import './App.css';
+import './index.css';
 
 function App() {
   
@@ -18,7 +19,7 @@ function App() {
       setIsValid(true);
       return "";
     }
-}
+  };
   
   const handleChange = (event) => {
     const value = event.target.value;
@@ -52,6 +53,7 @@ function App() {
   const [plates, setPlates] = useState("");
   const [isValid, setIsValid] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  //const [display, displayPlates] = useState("");
   //const [validationMessage, setValidationMethod] = useState("");
 
   return (
@@ -72,15 +74,16 @@ function App() {
           <input type="submit" value="Calculate"></input>
         </form>
         {!isValid && <p className="validation1">{errorMessage}</p>}
-
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Plates.
-        </a>
+        <h1 className="font-display">
+          Plates:<br></br>
+          55 lbs: {plates.plate55} <br></br>
+          45 lbs: {plates.plate45} <br></br>
+          35 lbs: {plates.plate35} <br></br>
+          25 lbs: {plates.plate25} <br></br>
+          10 lbs: {plates.plate10} <br></br>
+          5 lbs: {plates.plate5} <br></br>
+          2.5 lbs: {plates.plate2p5} <br></br>
+        </h1>
       </header>
     </div>
 
