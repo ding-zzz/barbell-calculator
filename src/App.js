@@ -2,6 +2,7 @@ import barbell from './img/barbell.jpg';
 import { useState } from "react";
 import './App.css';
 import './index.css';
+import WeightAnimation from './components/WeightAnimation.js';
 
 function App() {
   
@@ -30,6 +31,7 @@ function App() {
   const handleSubmit = (event) => {
     event.preventDefault();    
     setPlates(calculate(weight));
+    setSubmitted(true);
     console.log(platesObj);
     if (isValid) {
       console.log('Submitted weight:', weight);
@@ -53,6 +55,7 @@ function App() {
   const [plates, setPlates] = useState("");
   const [isValid, setIsValid] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
   //const [display, displayPlates] = useState("");
   //const [validationMessage, setValidationMethod] = useState("");
 
@@ -63,28 +66,25 @@ function App() {
         <p>
           Barbell Calculator
         </p>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="weight">Total Weight:</label>
-          <input 
-            type="text" 
-            value={weight} 
-            name="weight" 
-            onChange={(e) => handleChange(e)}
-          ></input><br></br>
-          <input type="submit" value="Calculate"></input>
-        </form>
-        {!isValid && <p className="validation1">{errorMessage}</p>}
-        <h1 className="font-display">
-          Plates:<br></br>
-          55 lbs: {plates.plate55} <br></br>
-          45 lbs: {plates.plate45} <br></br>
-          35 lbs: {plates.plate35} <br></br>
-          25 lbs: {plates.plate25} <br></br>
-          10 lbs: {plates.plate10} <br></br>
-          5 lbs: {plates.plate5} <br></br>
-          2.5 lbs: {plates.plate2p5} <br></br>
-        </h1>
       </header>
+        {!submitted ? (
+          <div>
+          <form onSubmit={handleSubmit}>
+            <label htmlFor="weight">Total Weight:</label>
+            <input 
+              type="text" 
+              value={weight} 
+              name="weight" 
+              onChange={(e) => handleChange(e)}
+            ></input><br></br>
+            <input type="submit" value="Calculate"></input>
+          </form>
+        </div>
+        // {!isValid && <p className="validation1">{errorMessage}</p>}
+        ) : (
+          <WeightAnimation plates={plates}/>
+        )}
+      
     </div>
 
   );
