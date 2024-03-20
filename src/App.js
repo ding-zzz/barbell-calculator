@@ -1,8 +1,11 @@
-import barbell from './img/barbell.jpg';
+import barbell from './assets/barbell.jpg';
 import { useState } from "react";
 import './App.css';
 import './index.css';
 import WeightAnimation from './components/WeightAnimation.js';
+import Calculate from './services/Calculate.js';
+import PlatesObj from './services/Calculate.js';
+import Submit from './components/Submit.js';
 
 function App() {
   
@@ -30,9 +33,9 @@ function App() {
 
   const handleSubmit = (event) => {
     event.preventDefault();    
-    setPlates(calculate(weight));
+    setPlates(Calculate(weight));
     setSubmitted(true);
-    console.log(platesObj);
+    console.log(PlatesObj);
     if (isValid) {
       console.log('Submitted weight:', weight);
     } else {
@@ -40,16 +43,7 @@ function App() {
     }
   };
 
-  const platesObj = {
-    plate55: 0,
-    plate45: 0,
-    plate35: 0,
-    plate25: 0,
-    plate10: 0,
-    plate5: 0,
-    plate2p5: 0,
-    plate1: 0,
-  };
+
 
   const [weight, setWeight] = useState("");
   const [plates, setPlates] = useState("");
@@ -66,7 +60,7 @@ function App() {
         <p>
           Barbell Calculator
         </p>
-      </header>
+      
         {!submitted ? (
           <div>
           <form onSubmit={handleSubmit}>
@@ -80,44 +74,14 @@ function App() {
             <input type="submit" value="Calculate"></input>
           </form>
         </div>
-        // {!isValid && <p className="validation1">{errorMessage}</p>}
+        // {!isValid && <p className="validation1"> {errorMessage} </p>}
         ) : (
           <WeightAnimation plates={plates}/>
         )}
-      
+      </header>
     </div>
 
   );
-  function calculate(weight) {
-    let w = Number(weight-45);
-  
-    while (w > 0){
-      if (w >=110){
-        platesObj.plate55 +=1;
-        w -=110;
-      }else if (w>=90){
-        platesObj.plate45 += 1;
-        w -= 90;
-      } else if (w>=70){
-        platesObj.plate35 += 1;
-        w -= 70;
-      } else if (w>=50){
-        platesObj.plate25 += 1;
-        w -= 50;
-      } else if (w>=20){
-        platesObj.plate10 += 1;
-        w -= 20;
-      } else if (w>=10){
-        platesObj.plate5 += 1;
-        w -= 10;
-      } else if (w>=5){
-        platesObj.plate2p5 += 1;
-        w -= 5;
-      } else break;
-    }
-    return platesObj;
-  
-  }
 }
 
 export default App;
