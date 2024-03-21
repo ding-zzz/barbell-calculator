@@ -1,6 +1,7 @@
 // src/components/Submit.js
 import React, { useState } from 'react';
 import Calculate from '../services/Calculate.js';
+import {submitted, setSubmitted} from '../services/Flags.js';
 
 const Submit = ({ onSubmit }) => {
   const [weight, setWeight] = useState("");
@@ -30,12 +31,14 @@ const Submit = ({ onSubmit }) => {
   };
 
   const handleSubmit = (event) => {
+    setSubmitted(true);
     event.preventDefault();
-    onSubmit(weight);    
+    //onSubmit(weight);    
     Calculate(weight);
 
     if (isValid) {
       console.log('Submitted weight:', weight);
+      console.log()
     } else {
       console.error('Invalid weight:', weight);
     }

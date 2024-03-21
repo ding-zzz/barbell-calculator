@@ -1,4 +1,4 @@
-const PlatesObj = {
+let PlatesObj = {
     plate55: 0,
     plate45: 0,
     plate35: 0,
