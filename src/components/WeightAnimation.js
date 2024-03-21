@@ -16,5 +16,4 @@ function WeightAnimation(props) {
     )
 }
 
-
 export default WeightAnimation;

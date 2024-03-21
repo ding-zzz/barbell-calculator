@@ -2,6 +2,7 @@ import barbell from './assets/barbell.jpg';
 import { useState } from "react";
 import './App.css';
 import './index.css';
+import './components/Submit.css';
 import WeightAnimation from './components/WeightAnimation.js';
 import Calculate from './services/Calculate.js';
 import PlatesObj from './services/Calculate.js';
