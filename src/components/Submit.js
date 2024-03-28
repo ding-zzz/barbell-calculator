@@ -38,13 +38,11 @@ function Submit({ setShowSubmit, setPlates }) {
   };
 
   const handleSubmit = (event) => {
-    setShowSubmit(false);
     event.preventDefault();
-    setPlates(Calculate(weight));
-
     if (isValid) {
+      setShowSubmit(false);
+      setPlates(Calculate(weight));
       console.log("Submitted weight:", weight);
-      console.log();
     } else {
       console.error("Invalid weight:", weight);
     }
