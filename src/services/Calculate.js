@@ -36,6 +36,7 @@ function Calculate(weight) {
       w -= 5;
     } else break;
   }
+  return PlatesObj;
 }
 
 export default Calculate;

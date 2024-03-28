@@ -2,7 +2,6 @@
 import { useState } from "react";
 import Submit from "./Submit";
 import WeightAnimation from "./WeightAnimation";
-//import { submitted } from "../services/Flags";
 
 function Display() {
   const [plates, setPlates] = useState("");
@@ -17,11 +16,10 @@ function Display() {
       <div>
         <div className="container">
           {showSubmit ? (
-            <Submit myProp={showSubmit} setMyProp={setShowSubmit} />
+            <Submit setShowSubmit={setShowSubmit} setPlates={setPlates} />
           ) : (
             <WeightAnimation plates={plates} />
           )}
-          {console.log(showSubmit)}
         </div>
       </div>
     </>

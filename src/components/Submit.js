@@ -6,7 +6,7 @@ import "./Submit.css";
 import "../index.css";
 import "../App.css";
 
-function Submit({ myProp, setMyProp }) {
+function Submit({ setShowSubmit, setPlates }) {
   const [weight, setWeight] = useState("");
   const [isValid, setIsValid] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
@@ -38,10 +38,9 @@ function Submit({ myProp, setMyProp }) {
   };
 
   const handleSubmit = (event) => {
-    console.log(myProp);
-    setMyProp(false);
+    setShowSubmit(false);
     event.preventDefault();
-    Calculate(weight);
+    setPlates(Calculate(weight));
 
     if (isValid) {
       console.log("Submitted weight:", weight);
