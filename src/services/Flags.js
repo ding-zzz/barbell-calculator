@@ -1,7 +1,7 @@
 let submitted = false;
 
-function setSubmitted(input){
-    submitted = input;
+function setSubmitted(input) {
+  submitted = input;
 }
 
-export {submitted, setSubmitted};
+export { submitted, setSubmitted };
